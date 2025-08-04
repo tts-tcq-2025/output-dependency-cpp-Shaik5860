@@ -18,5 +18,8 @@ void testTshirtSize() {
     assert(size(37) == 'S');
     assert(size(40) == 'M');
     assert(size(43) == 'L');
+    assert(size(38) == 'M'); //This assertion will fail if the boundary condition bug is not fixed
+    assert(size(42) == 'L'); //This assertion will fail if the boundary condition bug is not fixed
     std::cout << "All is well (maybe!)\n";
 }
+
