@@ -72,10 +72,11 @@ void testPrintColorMap() {
         assert(actualLine == expected[i] && "Color mapping mismatch!");
     }
 
-    std::cout << "✅ All color mappings are correct!\n";
+    std::cout << "All color mappings are correct!\n";
 }
 
 int main() {
     testPrintColorMap();
     return 0;
 }
+
