@@ -45,9 +45,10 @@ TEST(ColorMapTest, LinesMatchExpected) {
 
 // Test: generateColorMap data is correct
 TEST(ColorMapTest, RawDataIsCorrect) {
-    auto map = generateColorMap();
-    EXPECT_EQ(map.size(), 25);
-    EXPECT_EQ(std::get<1>(map[0]), "White"); // First major color
-    EXPECT_EQ(std::get<2>(map[0]), "Blue");  // First minor color
+   capturedLines.clear();
+    printColorMap(fakeOutputFunc);
+    EXPECT_EQ(capturedLines.size(), 25);
+    EXPECT_EQ(std::get<1>(capturedLines[0]), "White"); // First major color
+    EXPECT_EQ(std::get<2>(capturedLines[0]), "Blue");  // First minor color
 }
 
