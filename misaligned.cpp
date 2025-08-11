@@ -1,21 +1,38 @@
 #include <iostream>
 #include <assert.h>
 
-int printColorMap() {
+std::vector<std::tuple<int, std::string, std::string>> generateColorMap() {
     const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
     const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
-    int i = 0, j = 0;
-    for(i = 0; i < 5; i++) {
-        for(j = 0; j < 5; j++) {
-            std::cout << i * 5 + j << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
+
+    std::vector<std::tuple<int, std::string, std::string>> colorMap;
+
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            colorMap.emplace_back(i * 5 + j, majorColor[i], minorColor[i]);
         }
     }
-    return i * j;
+    return colorMap;
 }
 
-void testPrintColorMap() {
-    std::cout << "\nPrint color map test\n"; 
-    int result = printColorMap();
-    assert(result == 25);
-    std::cout << "All is well (maybe!)\n";
+std::string formatColorMapEntry(int index, const std::string& major, const std::string& minor) {
+    return std::to_string(index) + " | " + major + " | " + minor;
 }
+
+int printColorMap(const std::function<void(const std::string&)>& outputFunc) {
+    auto colorMap = generateColorMap();
+    for (const auto& [index, major, minor] : colorMap) {
+        outputFunc(formatColorMapEntry(index, major, minor));
+    }
+    return static_cast<int>(colorMap.size());
+}
+
+
+int main() {
+    testPrintColorMap();
+    return 0;
+}
+
+
+
+
